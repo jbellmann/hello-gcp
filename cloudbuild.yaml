@@ -1,1 +1,3 @@
-## later
+steps:
+- name: gcr.io/cloud-builders/mvn
+  dir: users
