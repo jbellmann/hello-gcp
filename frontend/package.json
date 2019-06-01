@@ -4,10 +4,12 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "build-app-base-href": "ng build --base-href /app/ --prod",
+    "prepare-docker": "rimraf dist && npm run build-app-base-href && cp -r dist docker"
   },
   "private": true,
   "dependencies": {

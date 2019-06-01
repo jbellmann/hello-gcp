@@ -6,3 +6,7 @@ steps:
 - name: gcr.io/cloud-builders/npm
   args: ['install']
   dir: frontend
+
+- name: gcr.io/cloud-builders/npm
+  args: ['run', 'prepare-docker']
+  dir: frontend
