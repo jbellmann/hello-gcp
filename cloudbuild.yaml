@@ -7,6 +7,6 @@ steps:
   args: ['install']
   dir: frontend
 
-- name: gcr.io/cloud-builders/npm
+- name: gcr.io/cloud-builders/npm:node-10.10.0
   args: ['run', 'prepare-docker']
   dir: frontend
