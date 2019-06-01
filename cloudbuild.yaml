@@ -2,3 +2,7 @@ steps:
 - name: gcr.io/cloud-builders/mvn
   args: ['install']
   dir: users
+
+- name: gcr.io/cloud-builders/npm
+  args: ['install']
+  dir: frontend
