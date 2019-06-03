@@ -3,6 +3,10 @@ steps:
   args: ['install']
   dir: users
 
+- name: gcr.io/cloud-builders/docker
+  args: ['build', '-t', 'gcr.io/$PROJECT_ID/hello-gcp-users', '.']
+  dir: users/target/docker
+
 - name: gcr.io/cloud-builders/npm
   args: ['install']
   dir: frontend
@@ -15,4 +19,4 @@ steps:
   args: ['build', '-t', 'gcr.io/$PROJECT_ID/hello-gcp-frontend', '.']
   dir: frontend/docker
 
-images: ['gcr.io/$PROJECT_ID/hello-gcp-frontend']
+images: ['gcr.io/$PROJECT_ID/hello-gcp-frontend','gcr.io/$PROJECT_ID/hello-gcp-users']
