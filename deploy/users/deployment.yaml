@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: users-service
+  namespace: default
+  labels:
+    application: users-service
+    version: "1"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      application: users-service
+  template:
+    metadata:
+      labels:
+        application: users-service
+        version: "1"
+    spec:
+      containers:
+      - name: users-service
+        image: gcr.io/siggi-example/hello-gcp-users
+        ports:
+        - containerPort: 8080
+          name: web
+        - containerPort: 7979
+          name: management
+        resources:
+          requests:
+            memory: 512Mi
+          limits:
+            memory: 512Mi
+        env:
+        - name: JAVA_OPTS
+          value: "-Xms64m -Xmx384m"
+        readinessProbe:
+          httpGet:
+            path: /actuator/health
+            port: 7979
+          initialDelaySeconds: 15
+          timeoutSeconds: 5
+          periodSeconds: 5
