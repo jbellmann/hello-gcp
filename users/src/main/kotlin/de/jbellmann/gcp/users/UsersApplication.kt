@@ -18,6 +18,14 @@ fun main(args: Array<String>) {
 }
 
 @RestController
+class OkOnRoot {
+
+	@GetMapping("/")
+	fun root() : ResponseEntity<String> = ResponseEntity.ok("UP")
+
+}
+
+@RestController
 class UsersController {
 
 	@GetMapping("/users")

@@ -23,4 +23,11 @@ class UsersControllerTest(@Autowired val mockMvc: MockMvc) {
                 .andExpect(jsonPath("\$.[1].firstname").value("Peter"))
                 .andExpect(jsonPath("\$.[1].lastname").value("Behner"))
     }
+
+    @Test
+    fun `test lb health-check-dummy`() {
+        mockMvc.perform(get("/"))
+                .andDo(print())
+                .andExpect(status().isOk)
+    }
 }
