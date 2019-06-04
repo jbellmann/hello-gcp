@@ -1,14 +1,22 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: users-service
+  name: demo-ingress
   labels:
     application: users-service
 spec:
+  backend:
+    serviceName: users-service
+    servicePort: 80
   rules:
-    - host:
-      http:
-        paths:
-          - backend:
-              serviceName: users-service
-              servicePort: 80
+  - host: foo.bar.com
+    http:
+      paths:
+      - path: /api
+        backend:
+          serviceName: users-service
+          servicePort: 80
+      - path: /app
+        backend:
+          serviceName: frontend
+          servicePort: 80

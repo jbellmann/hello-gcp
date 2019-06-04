@@ -1,2 +1,4 @@
 users/target
-frontend/docker/dist/
+frontend/docker/dist
+
+SESS*
