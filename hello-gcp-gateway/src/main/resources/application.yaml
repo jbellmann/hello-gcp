@@ -29,6 +29,6 @@ spring:
           filters:
             - StripPrefix=1
         - id: users
-          uri: http://user-service.default.svc.cluster.local/
+          uri: http://users-service.default.svc.cluster.local/
           predicates:
             - Path=/users/**
