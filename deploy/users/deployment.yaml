@@ -5,7 +5,7 @@ metadata:
   namespace: default
   labels:
     application: users-service
-    version: "1"
+    version: "2"
 spec:
   replicas: 1
   selector:
@@ -35,8 +35,8 @@ spec:
           value: "-Xms64m -Xmx384m"
         readinessProbe:
           httpGet:
-            path: /actuator/health
-            port: 7979
+            path: /
+            port: 8080
           initialDelaySeconds: 15
           timeoutSeconds: 5
           periodSeconds: 5
