@@ -1,25 +1,25 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: users-service
+  name: gateway
   namespace: default
   labels:
-    application: users-service
-    version: "2"
+    application: gateway
+    version: "1"
 spec:
   replicas: 1
   selector:
     matchLabels:
-      application: users-service
+      application: gateway
   template:
     metadata:
       labels:
-        application: users-service
+        application: gateway
         version: "1"
     spec:
       containers:
-      - name: users-service
-        image: gcr.io/siggi-example/hello-gcp-users:latest
+      - name: gateway
+        image: gcr.io/siggi-example/hello-gcp-gateway:latest
         ports:
         - containerPort: 8080
           name: web
@@ -35,8 +35,8 @@ spec:
           value: "-Xms64m -Xmx384m"
         readinessProbe:
           httpGet:
-            path: /
-            port: 8080
+            path: /actuator/health
+            port: 7979
           initialDelaySeconds: 15
           timeoutSeconds: 5
           periodSeconds: 5

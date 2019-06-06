@@ -19,4 +19,12 @@ steps:
   args: ['build', '-t', 'gcr.io/$PROJECT_ID/hello-gcp-frontend', '.']
   dir: frontend/docker
 
-images: ['gcr.io/$PROJECT_ID/hello-gcp-frontend','gcr.io/$PROJECT_ID/hello-gcp-users']
+- name: gcr.io/cloud-builders/mvn
+  args: ['install']
+  dir: hello-gcp-gateway
+
+- name: gcr.io/cloud-builders/docker
+  args: ['build', '-t', 'gcr.io/$PROJECT_ID/hello-gcp-gateway', '.']
+  dir: hello-gcp-gateway/target/docker
+
+images: ['gcr.io/$PROJECT_ID/hello-gcp-frontend','gcr.io/$PROJECT_ID/hello-gcp-users','gcr.io/$PROJECT_ID/hello-gcp-gateway']

@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: gcr.io/siggi-example/hello-gcp-frontend
+        image: gcr.io/siggi-example/hello-gcp-frontend:latest
         ports:
         - containerPort: 80
           name: web
