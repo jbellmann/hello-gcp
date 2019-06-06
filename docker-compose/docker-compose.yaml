@@ -1,0 +1,40 @@
+version: '3'
+
+services:
+  users:
+    image: gcr.io/sigma-example/hello-gcp-users:latest
+    ports:
+      - "8078:8080"
+    networks:
+      application_net:
+          ipv4_address: 172.28.1.3
+
+  app:
+    image: gcr.io/sigma-example/hello-gcp-frontend:latest
+    ports:
+      - "8080:80"
+    networks:
+      application_net:
+          ipv4_address: 172.28.1.4
+
+  gateway:
+    image: gcr.io/sigma-example/hello-gcp-gateway
+    environment:
+      SPRING_PROFILES_ACTIVE: compose
+    volumes:
+      - ./gateway/config:/config:ro
+    depends_on:
+      - app
+      - users
+    ports:
+      - "8079:8080"
+    networks:
+      application_net:
+          ipv4_address: 172.28.1.5
+
+networks:
+    application_net:
+        ipam:
+            driver: default
+            config:
+                - subnet: 172.28.0.0/16

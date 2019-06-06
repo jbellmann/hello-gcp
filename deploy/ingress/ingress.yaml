@@ -1,0 +1,10 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: demo-ingress
+  labels:
+    application: demo-ingress
+spec:
+  backend:
+    serviceName: gateway
+    servicePort: 80

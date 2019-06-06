@@ -1,25 +1,25 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: users-service
+  name: gateway
   namespace: default
   labels:
-    application: users-service
+    application: gateway
     version: "1"
 spec:
   replicas: 1
   selector:
     matchLabels:
-      application: users-service
+      application: gateway
   template:
     metadata:
       labels:
-        application: users-service
+        application: gateway
         version: "1"
     spec:
       containers:
-      - name: users-service
-        image: gcr.io/siggi-example/hello-gcp-users:latest
+      - name: gateway
+        image: gcr.io/siggi-example/hello-gcp-gateway:latest
         ports:
         - containerPort: 8080
           name: web

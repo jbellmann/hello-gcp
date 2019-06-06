@@ -1,4 +1,4 @@
-FROM nginx:alpine
+FROM sickp/alpine-nginx
 LABEL maintainer "joerg.bellmann@googlemail.com"
 
 COPY nginx.conf /etc/nginx/nginx.conf

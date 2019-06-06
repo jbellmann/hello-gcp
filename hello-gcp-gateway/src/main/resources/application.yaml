@@ -1,0 +1,34 @@
+server:
+  use-forward-headers: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  server:
+    port: 7979
+  endpoint:
+    health:
+      show-details: always
+  metrics:
+    export:
+      prometheus:
+        descriptions: false
+
+spring:
+  application:
+    name: hello-gcp-gateway
+  cloud:
+    gateway:
+      routes:
+        - id: ui
+          uri: http://frontend.default.svc.cluster.local/
+          predicates:
+            - Path=/app/**
+          filters:
+            - StripPrefix=1
+        - id: users
+          uri: http://user-service.default.svc.cluster.local/
+          predicates:
+            - Path=/users/**
