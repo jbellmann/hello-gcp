@@ -3,6 +3,7 @@ steps:
   name: gcr.io/cloud-builders/mvn
   args: ['install']
   dir: users
+  waitFor: ['-']
 
 - id: 'build users service docker image'
   name: gcr.io/cloud-builders/docker
@@ -14,6 +15,7 @@ steps:
   name: gcr.io/cloud-builders/npm
   args: ['install']
   dir: frontend
+  waitFor: ['-']
 
 - id: 'prepare frontend docker image'
   name: gcr.io/cloud-builders/npm:node-10.10.0
@@ -31,6 +33,7 @@ steps:
   name: gcr.io/cloud-builders/mvn
   args: ['install']
   dir: hello-gcp-gateway
+  waitFor: ['-']
 
 - id: 'build gateway docker image'
   name: gcr.io/cloud-builders/docker
